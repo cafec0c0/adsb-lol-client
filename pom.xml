@@ -9,7 +9,7 @@
     <version>0.0.4-SNAPSHOT</version>
     <name>adsb-lol-client</name>
     <packaging>jar</packaging>
-    <description>Java 11+ client for adsb.lol</description>
+    <description>Java 8+ client for adsb.lol</description>
     <url>https://github.com/cafec0c0/adsb-lol-client</url>
     <inceptionYear>2026</inceptionYear>
     <licenses>
@@ -59,6 +59,7 @@
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
             <version>${jakarta-annotation-api.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
