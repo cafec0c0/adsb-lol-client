@@ -30,6 +30,7 @@ jobs:
   publish:
     name: Publish Maven package
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Publish package
         run: mvn --batch-mode deploy
@@ -39,7 +40,7 @@ jobs:
   bump-pom-version-snapshot:
     name: Bump POMs for snapshot
     runs-on: ubuntu-latest
-    needs: build
+    needs: publish
     steps:
       - name: Remove tag prefix
         run: |
