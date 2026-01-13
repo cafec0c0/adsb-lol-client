@@ -18,5 +18,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '25'
+      - name: Set pom.xml version for this build
+        run: mvn -B versions:set -DnewVersion=$VERSION -DgenerateBackupPoms=false
       - name: Build jar
         run: mvn -B clean package

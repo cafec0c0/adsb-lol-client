@@ -41,6 +41,8 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '25'
+      - name: Set pom.xml version for this release
+        run: mvn -B versions:set -DnewVersion=$VERSION -DgenerateBackupPoms=false
       - name: Publish package
         run: mvn --batch-mode deploy
         env:
