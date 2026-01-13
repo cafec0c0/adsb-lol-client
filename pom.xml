@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.adambruce</groupId>
+    <artifactId>adsb-lol-client</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>adsb-lol-client</name>
+    <packaging>jar</packaging>
+    <description>Java 11+ client for adsb.lol</description>
+    <url>https://github.com/cafec0c0/adsb-lol-client</url>
+    <inceptionYear>2026</inceptionYear>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:git@github.com:cafec0c0/adsb-lol-client.git</connection>
+        <developerConnection>scm:git:git@github.com:cafec0c0/adsb-lol-client.git</developerConnection>
+        <url>https://github.com/cafec0c0/adsb-lol-client.git</url>
+        <tag>${project.version}</tag>
+    </scm>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <httpclient.version>5.6</httpclient.version>
+        <jakarta-annotation-api.version>3.0.0</jakarta-annotation-api.version>
+        <jackson-databind.version>2.20.1</jackson-databind.version>
+        <jackson-databind-nullable.version>0.2.8</jackson-databind-nullable.version>
+
+        <openapi-generator-maven-plugin.version>7.18.0</openapi-generator-maven-plugin.version>
+        <maven-antrun-plugin.version>3.2.0</maven-antrun-plugin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>${jakarta-annotation-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>${jackson-databind-nullable.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--
+                Attempt to fetch the latest api spec, otherwise we'll just fallback to the hardcoded spec included in
+                the repository.
+            -->
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${maven-antrun-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <target>
+                                <get src="https://api.adsb.lol/api/openapi.json"
+                                     dest="openapi.json"
+                                     ignoreerrors="true"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>${openapi-generator-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <inputSpec>${project.basedir}/openapi.json</inputSpec>
+                            <generatorName>java</generatorName>
+                            <configOptions>
+                                <library>apache-httpclient</library>
+                                <apiPackage>net.adambruce.adsb.lol.api</apiPackage>
+                                <modelPackage>net.adambruce.adsb.lol.model</modelPackage>
+                                <invokerPackage>net.adambruce.adsb.lol.client</invokerPackage>
+                                <useJakartaEe>true</useJakartaEe>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
