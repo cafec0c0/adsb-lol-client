@@ -6,7 +6,7 @@
 
     <groupId>net.adambruce</groupId>
     <artifactId>adsb-lol-client</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
     <name>adsb-lol-client</name>
     <packaging>jar</packaging>
     <description>Java 8+ client for adsb.lol</description>
