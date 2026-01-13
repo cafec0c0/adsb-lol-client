@@ -1,0 +1,19 @@
+name: Build
+on: push
+
+jobs:
+  build:
+    name: Build JAR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove tag prefix
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '25'
+      - name: Build jar
+        run: mvn -B clean package
