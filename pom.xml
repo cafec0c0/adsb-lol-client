@@ -40,6 +40,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <packageBase>net.adambruce.adsb.lol</packageBase>
         <serverUrl>https://api.adsb.lol</serverUrl>
 
         <httpclient.version>5.6</httpclient.version>
@@ -144,21 +145,24 @@
                             <generatorName>java</generatorName>
                             <configOptions>
                                 <library>apache-httpclient</library>
-                                <apiPackage>net.adambruce.adsb.lol.api</apiPackage>
-                                <modelPackage>net.adambruce.adsb.lol.model</modelPackage>
-                                <invokerPackage>net.adambruce.adsb.lol.client</invokerPackage>
+                                <apiPackage>${packageBase}.api</apiPackage>
+                                <modelPackage>${packageBase}.model</modelPackage>
+                                <invokerPackage>${packageBase}.client</invokerPackage>
                                 <useJakartaEe>true</useJakartaEe>
                             </configOptions>
                             <typeMappings>
-                                <!-- Use boxed types to handle large values -->
-                                <typeMapping>Float=java.math.BigDecimal</typeMapping>
-                                <typeMapping>Double=java.math.BigDecimal</typeMapping>
-                                <typeMapping>Integer=java.math.BigInteger</typeMapping>
-                                <typeMapping>Long=java.math.BigInteger</typeMapping>
+                                <!-- Use larger types to handle large values but BigDecimal is a bit excessive -->
+                                <typeMapping>Float=Double</typeMapping>
+                                <typeMapping>Integer=Long</typeMapping>
+                                <typeMapping>BigDecimal=Double</typeMapping>
 
-                                <!-- The generator struggles with this type, so we use a String -->
-                                <typeMapping>Alt_Baro=String</typeMapping>
+                                <!-- These fields could be several types which Java can't handle, so use Object -->
+                                <typeMapping>Alt_Baro=Object</typeMapping>
+                                <typeMapping>ValidationErrorLocInner=Object</typeMapping>
                             </typeMappings>
+                            <additionalProperties>
+                                <additionalProperty>supportUrlQuery=false</additionalProperty>
+                            </additionalProperties>
                         </configuration>
                     </execution>
                 </executions>
