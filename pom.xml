@@ -40,6 +40,8 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <serverUrl>https://api.adsb.lol</serverUrl>
+
         <httpclient.version>5.6</httpclient.version>
         <jakarta-annotation-api.version>3.0.0</jakarta-annotation-api.version>
         <jackson-databind.version>2.20.1</jackson-databind.version>
@@ -80,21 +82,42 @@
 
     <build>
         <plugins>
-            <!--
-                Attempt to fetch the latest api spec, otherwise we'll just fallback to the hardcoded spec included in
-                the repository.
-            -->
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
                 <version>${maven-antrun-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>openapi</id>
                         <phase>generate-resources</phase>
                         <configuration>
                             <target>
+                                <!-- Attempt to fetch an updated openapi spec -->
                                 <get src="https://api.adsb.lol/api/openapi.json"
                                      dest="openapi.json"
                                      ignoreerrors="true"/>
+                                <!-- Inject the correct server into the openapi spec -->
+                                <exec executable="jq"
+                                      input="openapi.json"
+                                      output="openapi.json">
+                                      <arg value=". += {&quot;servers&quot;:[{&quot;url&quot;:&quot;${serverUrl}&quot;}]}"/>
+                                </exec>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>docs</id>
+                        <phase>install</phase>
+                        <configuration>
+                            <target>
+                                <!-- Copy the generated docs into the repository -->
+                                <copy toDir="${project.basedir}/docs">
+                                    <fileset dir="${project.build.directory}/generated-sources/openapi/docs">
+                                        <include name="*"/>
+                                    </fileset>
+                                </copy>
                             </target>
                         </configuration>
                         <goals>
@@ -103,6 +126,8 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <!-- Inject the version into the README.md -->
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -123,6 +148,38 @@
                                 <invokerPackage>net.adambruce.adsb.lol.client</invokerPackage>
                                 <useJakartaEe>true</useJakartaEe>
                             </configOptions>
+                            <typeMappings>
+                                <!-- Use boxed types to handle large values -->
+                                <typeMapping>Float=java.math.BigDecimal</typeMapping>
+                                <typeMapping>Double=java.math.BigDecimal</typeMapping>
+                                <typeMapping>Integer=java.math.BigInteger</typeMapping>
+                                <typeMapping>Long=java.math.BigInteger</typeMapping>
+
+                                <!-- The generator struggles with this type, so we use a String -->
+                                <typeMapping>Alt_Baro=String</typeMapping>
+                            </typeMappings>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.basedir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <filtering>true</filtering>
+                                    <directory>${project.basedir}/templates</directory>
+                                </resource>
+                            </resources>
                         </configuration>
                     </execution>
                 </executions>

@@ -38,3 +38,8 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Generated files (these need to be committed explicitly)
+openapi.json
+docs/
+README.md
