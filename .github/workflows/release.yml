@@ -71,5 +71,4 @@ jobs:
           message: Bump POM and update docs
           new_branch: main
           push: true
-          commit: --force
-          add: '["docs", "pom.xml"]'
+          add: '["docs -f", "pom.xml -f"]'
