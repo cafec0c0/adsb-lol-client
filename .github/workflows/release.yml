@@ -72,3 +72,21 @@ jobs:
           new_branch: main
           push: true
           add: '["docs -f", "pom.xml -f", "README.md -f"]'
+
+
+  create-release:
+    name: Create release
+    runs-on: ubuntu-latest
+    needs: bump-pom-version-and-update-docs
+    steps:
+      - name: Remove tag prefix
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: $VERSION
+          generate_release_notes: true
+          repository: cafec0c0/adsb-lol-client
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: "🚀 [View Maven Release](https://github.com/cafec0c0/adsb-lol-client/releases/tag/$VERSION)"
