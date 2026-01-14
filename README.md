@@ -10,13 +10,13 @@ First, add the package as a dependency in your project:
  <dependency>
   <groupId>net.adambruce</groupId>
   <artifactId>adsb-lol-client</artifactId>
-  <version>0.0.10</version>
+  <version>0.0.11</version>
 </dependency> 
 ```
 
 **Gradle**:
 ```groovy
-implementation("net.adambruce:adsb-lol-client:0.0.10")
+implementation("net.adambruce:adsb-lol-client:0.0.11")
 ```
 
 ### Using the Client
