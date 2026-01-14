@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**loc** | [**List&lt;ValidationErrorLocInner&gt;**](ValidationErrorLocInner.md) |  |  |
+|**loc** | [**List&lt;Object&gt;**](ValidationErrorLocInner.md) |  |  |
 |**msg** | **String** |  |  |
 |**type** | **String** |  |  |
 

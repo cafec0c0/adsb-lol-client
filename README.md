@@ -10,13 +10,13 @@ First, add the package as a dependency in your project:
  <dependency>
   <groupId>net.adambruce</groupId>
   <artifactId>adsb-lol-client</artifactId>
-  <version>0.0.8</version>
+  <version>0.0.9</version>
 </dependency> 
 ```
 
 **Gradle**:
 ```groovy
-implementation("net.adambruce:adsb-lol-client:0.0.8")
+implementation("net.adambruce:adsb-lol-client:0.0.9")
 ```
 
 ### Using the Client
@@ -24,10 +24,7 @@ To use the client, create an instance of the desired API and invoke any API meth
 ```java
 V2Api v2Api = new V2Api();
 V2ResponseModel response = v2Api.v2PointV2PointLatLonRadiusGet(
-    BigDecimal.valueOf(51.45378916708614),
-    BigDecimal.valueOf(-0.0998748436362988),
-    BigInteger.valueOf(250)
-);
+        51.45378916708614, -0.0998748436362988, 100L);
 
 System.out.println("Local aircraft:");
 response.getAc().forEach(
@@ -37,6 +34,28 @@ response.getAc().forEach(
 
 ###
 See the [Documentation](#documentation) section for more information.
+
+### Fields of Variable Type
+As Java is a strongly typed language, fields that could be different types (e.g. number or string)
+aren't properly supported by constructors (they become ambiguous for null), so we have to use the
+generic `Object` type for these.
+
+To determine what an Object field is, use the `instanceof` operator. e.g.
+```java
+if (aircraft.getAltBaro() instanceof Integer baroAltInt) {
+    // baroAltInt is automatically created as an integer
+} else if(aircraft.getAltBaro() instanceof String baroAltString) {
+    // baroAltInt is automatically created as an string    
+}
+```
+or
+```java
+if (aircraft.getAltBaro() instanceof Integer) {
+    Integer baroAlt = (Integer)(aircraft.getAltBaro());
+} else {
+    String baroAlt = (String)(aircraft.getAltBaro());    
+}
+```
 
 ## Documentation
 Documentation is generated from the OpenAPI spec, you can read the generated Markdown documentation 

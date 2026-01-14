@@ -7,64 +7,64 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**alert** | **java.math.BigInteger** |  |  [optional] |
-|**altBaro** | [**String**](String.md) |  |  [optional] |
-|**altGeom** | **java.math.BigInteger** |  |  [optional] |
-|**baroRate** | **java.math.BigInteger** |  |  [optional] |
+|**alert** | **Long** |  |  [optional] |
+|**altBaro** | [**Object**](Object.md) |  |  [optional] |
+|**altGeom** | **Long** |  |  [optional] |
+|**baroRate** | **Long** |  |  [optional] |
 |**category** | **String** |  |  [optional] |
 |**emergency** | **String** |  |  [optional] |
 |**flight** | **String** |  |  [optional] |
-|**gs** | **BigDecimal** |  |  [optional] |
-|**gva** | **java.math.BigInteger** |  |  [optional] |
+|**gs** | **Double** |  |  [optional] |
+|**gva** | **Long** |  |  [optional] |
 |**hex** | **String** |  |  |
-|**lat** | **BigDecimal** |  |  [optional] |
-|**lon** | **BigDecimal** |  |  [optional] |
-|**messages** | **java.math.BigInteger** |  |  |
+|**lat** | **Double** |  |  [optional] |
+|**lon** | **Double** |  |  [optional] |
+|**messages** | **Long** |  |  |
 |**mlat** | **List&lt;String&gt;** |  |  |
-|**nacP** | **java.math.BigInteger** |  |  [optional] |
-|**nacV** | **java.math.BigInteger** |  |  [optional] |
-|**navAltitudeMcp** | **java.math.BigInteger** |  |  [optional] |
-|**navHeading** | **BigDecimal** |  |  [optional] |
-|**navQnh** | **BigDecimal** |  |  [optional] |
-|**nic** | **java.math.BigInteger** |  |  [optional] |
-|**nicBaro** | **java.math.BigInteger** |  |  [optional] |
+|**nacP** | **Long** |  |  [optional] |
+|**nacV** | **Long** |  |  [optional] |
+|**navAltitudeMcp** | **Long** |  |  [optional] |
+|**navHeading** | **Double** |  |  [optional] |
+|**navQnh** | **Double** |  |  [optional] |
+|**nic** | **Long** |  |  [optional] |
+|**nicBaro** | **Long** |  |  [optional] |
 |**r** | **String** |  |  [optional] |
-|**rc** | **java.math.BigInteger** |  |  [optional] |
-|**rssi** | **BigDecimal** |  |  |
-|**sda** | **java.math.BigInteger** |  |  [optional] |
-|**seen** | **BigDecimal** |  |  |
-|**seenPos** | **BigDecimal** |  |  [optional] |
-|**sil** | **java.math.BigInteger** |  |  [optional] |
+|**rc** | **Long** |  |  [optional] |
+|**rssi** | **Double** |  |  |
+|**sda** | **Long** |  |  [optional] |
+|**seen** | **Double** |  |  |
+|**seenPos** | **Double** |  |  [optional] |
+|**sil** | **Long** |  |  [optional] |
 |**silType** | **String** |  |  [optional] |
-|**spi** | **java.math.BigInteger** |  |  [optional] |
+|**spi** | **Long** |  |  [optional] |
 |**squawk** | **String** |  |  [optional] |
 |**t** | **String** |  |  [optional] |
 |**tisb** | **List&lt;String&gt;** |  |  |
-|**track** | **BigDecimal** |  |  [optional] |
+|**track** | **Double** |  |  [optional] |
 |**type** | **String** |  |  |
-|**version** | **java.math.BigInteger** |  |  [optional] |
-|**geomRate** | **java.math.BigInteger** |  |  [optional] |
-|**dbFlags** | **java.math.BigInteger** |  |  [optional] |
+|**version** | **Long** |  |  [optional] |
+|**geomRate** | **Long** |  |  [optional] |
+|**dbFlags** | **Long** |  |  [optional] |
 |**navModes** | **List&lt;String&gt;** |  |  [optional] |
-|**trueHeading** | **BigDecimal** |  |  [optional] |
-|**ias** | **java.math.BigInteger** |  |  [optional] |
-|**mach** | **BigDecimal** |  |  [optional] |
-|**magHeading** | **BigDecimal** |  |  [optional] |
-|**oat** | **java.math.BigInteger** |  |  [optional] |
-|**roll** | **BigDecimal** |  |  [optional] |
-|**tas** | **java.math.BigInteger** |  |  [optional] |
-|**tat** | **java.math.BigInteger** |  |  [optional] |
-|**trackRate** | **BigDecimal** |  |  [optional] |
-|**wd** | **java.math.BigInteger** |  |  [optional] |
-|**ws** | **java.math.BigInteger** |  |  [optional] |
-|**gpsOkBefore** | **BigDecimal** |  |  [optional] |
-|**gpsOkLat** | **BigDecimal** |  |  [optional] |
-|**gpsOkLon** | **BigDecimal** |  |  [optional] |
+|**trueHeading** | **Double** |  |  [optional] |
+|**ias** | **Long** |  |  [optional] |
+|**mach** | **Double** |  |  [optional] |
+|**magHeading** | **Double** |  |  [optional] |
+|**oat** | **Long** |  |  [optional] |
+|**roll** | **Double** |  |  [optional] |
+|**tas** | **Long** |  |  [optional] |
+|**tat** | **Long** |  |  [optional] |
+|**trackRate** | **Double** |  |  [optional] |
+|**wd** | **Long** |  |  [optional] |
+|**ws** | **Long** |  |  [optional] |
+|**gpsOkBefore** | **Double** |  |  [optional] |
+|**gpsOkLat** | **Double** |  |  [optional] |
+|**gpsOkLon** | **Double** |  |  [optional] |
 |**lastPosition** | [**V2ResponseLastPosition**](V2ResponseLastPosition.md) |  |  [optional] |
-|**rrLat** | **BigDecimal** |  |  [optional] |
-|**rrLon** | **BigDecimal** |  |  [optional] |
-|**calcTrack** | **java.math.BigInteger** |  |  [optional] |
-|**navAltitudeFms** | **java.math.BigInteger** |  |  [optional] |
+|**rrLat** | **Double** |  |  [optional] |
+|**rrLon** | **Double** |  |  [optional] |
+|**calcTrack** | **Long** |  |  [optional] |
+|**navAltitudeFms** | **Long** |  |  [optional] |
 
 
 

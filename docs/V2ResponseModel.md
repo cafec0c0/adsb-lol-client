@@ -8,11 +8,11 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**ac** | [**List&lt;V2ResponseAcItem&gt;**](V2ResponseAcItem.md) |  |  |
-|**ctime** | **java.math.BigInteger** |  |  |
+|**ctime** | **Long** |  |  |
 |**msg** | **String** |  |  |
-|**now** | **java.math.BigInteger** |  |  |
-|**ptime** | **java.math.BigInteger** |  |  |
-|**total** | **java.math.BigInteger** |  |  |
+|**now** | **Long** |  |  |
+|**ptime** | **Long** |  |  |
+|**total** | **Long** |  |  |
 
 
 

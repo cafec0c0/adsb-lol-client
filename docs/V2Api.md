@@ -112,9 +112,9 @@ public class Example {
         defaultClient.setBasePath("https://api.adsb.lol");
 
         V2Api apiInstance = new V2Api(defaultClient);
-        BigDecimal lat = new BigDecimal("51.89508"); // BigDecimal | 
-        BigDecimal lon = new BigDecimal("2.79437"); // BigDecimal | 
-        java.math.BigInteger radius = new java.math.BigInteger(); // java.math.BigInteger | 
+        Double lat = 51.89508D; // Double | 
+        Double lon = 2.79437D; // Double | 
+        Long radius = 250L; // Long | 
         try {
             V2ResponseModel result = apiInstance.v2ClosestV2ClosestLatLonRadiusGet(lat, lon, radius);
             System.out.println(result);
@@ -134,9 +134,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **lat** | **BigDecimal**|  | |
-| **lon** | **BigDecimal**|  | |
-| **radius** | **java.math.BigInteger**|  | |
+| **lat** | **Double**|  | |
+| **lon** | **Double**|  | |
+| **radius** | **Long**|  | |
 
 ### Return type
 
@@ -503,9 +503,9 @@ public class Example {
         defaultClient.setBasePath("https://api.adsb.lol");
 
         V2Api apiInstance = new V2Api(defaultClient);
-        BigDecimal lat = new BigDecimal("51.89508"); // BigDecimal | 
-        BigDecimal lon = new BigDecimal("2.79437"); // BigDecimal | 
-        java.math.BigInteger radius = new java.math.BigInteger(); // java.math.BigInteger | 
+        Double lat = 51.89508D; // Double | 
+        Double lon = 2.79437D; // Double | 
+        Long radius = 250L; // Long | 
         try {
             V2ResponseModel result = apiInstance.v2PointV2LatLatLonLonDistRadiusGet(lat, lon, radius);
             System.out.println(result);
@@ -525,9 +525,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **lat** | **BigDecimal**|  | |
-| **lon** | **BigDecimal**|  | |
-| **radius** | **java.math.BigInteger**|  | |
+| **lat** | **Double**|  | |
+| **lon** | **Double**|  | |
+| **radius** | **Long**|  | |
 
 ### Return type
 
@@ -574,9 +574,9 @@ public class Example {
         defaultClient.setBasePath("https://api.adsb.lol");
 
         V2Api apiInstance = new V2Api(defaultClient);
-        BigDecimal lat = new BigDecimal("51.89508"); // BigDecimal | 
-        BigDecimal lon = new BigDecimal("2.79437"); // BigDecimal | 
-        java.math.BigInteger radius = new java.math.BigInteger(); // java.math.BigInteger | 
+        Double lat = 51.89508D; // Double | 
+        Double lon = 2.79437D; // Double | 
+        Long radius = 250L; // Long | 
         try {
             V2ResponseModel result = apiInstance.v2PointV2PointLatLonRadiusGet(lat, lon, radius);
             System.out.println(result);
@@ -596,9 +596,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **lat** | **BigDecimal**|  | |
-| **lon** | **BigDecimal**|  | |
-| **radius** | **java.math.BigInteger**|  | |
+| **lat** | **Double**|  | |
+| **lon** | **Double**|  | |
+| **radius** | **Long**|  | |
 
 ### Return type
 

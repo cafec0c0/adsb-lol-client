@@ -8,8 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**callsign** | **String** |  |  |
-|**lat** | **BigDecimal** |  |  |
-|**lng** | **BigDecimal** |  |  |
+|**lat** | **Double** |  |  |
+|**lng** | **Double** |  |  |
 
 
 

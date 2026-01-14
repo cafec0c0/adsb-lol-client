@@ -7,11 +7,11 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**lat** | **BigDecimal** |  |  |
-|**lon** | **BigDecimal** |  |  |
-|**nic** | **java.math.BigInteger** |  |  |
-|**rc** | **java.math.BigInteger** |  |  |
-|**seenPos** | **BigDecimal** |  |  |
+|**lat** | **Double** |  |  |
+|**lon** | **Double** |  |  |
+|**nic** | **Long** |  |  |
+|**rc** | **Long** |  |  |
+|**seenPos** | **Double** |  |  |
 
 
 
